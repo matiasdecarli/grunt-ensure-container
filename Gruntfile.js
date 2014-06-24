@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     'ensure_container': {      
         options: {
-          containers:['static1','uploads1']
+          containers:['static','uploads']
         },        
       }      
   });

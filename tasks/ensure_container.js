@@ -8,28 +8,30 @@
 
 'use strict';
 
-var azure = require('azure');
+var azure = require('azure'),
+    async = require('async');
 
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
-
   grunt.registerTask('ensure_container', 'Grunt task to ensure the container on Windows Azure exists', function() {
+      var options = this.options();
       var done = this.async();
-      ensureContainer(this.options(),done);          
-  });  
-
-  function ensureContainer(options){
-    options['containers'].forEach(function(item){
+      
+      async.forEach(options['containers'],function(item,next){        
         azure.createBlobService().createContainerIfNotExists(item, {publicAccessLevel : 'blob'}, function(error,response){
             if (error) throw error;
             if (response){
                 console.log('Container ' + item + ' was created');
-            }            
-        });     
-    });    
-  }
+            }
+            else{
+                console.log('Container ' + item + ' already exists');
+            }  
+            next();          
+        });               
+      },function(error) {
+        done(!error);
+      });
+            
+  });  
 
 };
