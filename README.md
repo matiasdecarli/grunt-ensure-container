@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # grunt-ensure-container
 
 > Grunt task to ensure the container on Windows Azure exists
@@ -87,3 +88,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 _(Nothing yet)_
+=======
+grunt-ensure-container
+======================
+
+Grunt task to ensure the container on Windows Azure exists
+>>>>>>> a67968055f1de714c67ca515534e670f4e90052c
